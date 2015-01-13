@@ -8,7 +8,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var _ = require('underscore.deferred');
 var Twit = require('twit');
-var T = new Twit(require('./config.js'));
+//var T = new Twit(require('./config.js'));
 
 var baseUrl = 'http://news.google.com';
 
@@ -102,19 +102,19 @@ function tweet() {
     console.log(topic);
     getHeadline(topic.url).then(function(headline) {
       if (headline.indexOf(topic.name) > -1) {
-        getTopics(categoryCodes.pickRemove()).then(function(topics) {
-          var newTopic = topics.pick();
-          var newHeadline = headline.replace(topic.name, newTopic.name);
+        //getTopics(categoryCodes.pickRemove()).then(function(topics) {
+          //var newTopic = topics.pick();
+          var newHeadline = headline.replace(topic.name, "Jimmy Fallon");
           console.log(newHeadline);
-          T.post('statuses/update', { status: newHeadline }, function(err, reply) {
+          /*T.post('statuses/update', { status: newHeadline }, function(err, reply) {
             if (err) {
               console.log('error:', err);
             }
             else {
               console.log('reply:', reply);
             }
-          });
-        });
+          });*/
+        //});
       }
       else {
         console.log('couldn\'t find a headline match, trying again...');
